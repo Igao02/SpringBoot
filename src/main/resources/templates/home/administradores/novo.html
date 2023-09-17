@@ -1,58 +1,34 @@
 <div th:replace="home/compartilhado/top"></div>
 <!-- Begin Page Content -->
-<div class="container-fluid">
+    <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Administradores</h1>
-    <p class="mb-4">
-        Aqui irá listar os administradores do meu sistema
-    </p>
+        <!-- Page Heading -->
+        <h1 class="h3 mb-2 text-gray-800">Novo Administrador</h1>
+        <p class="mb-4">
+            Aqui iremos cadastrar um novo Administador
+        </p>
 
-    <!-- DataTales Example -->
-    <div class="card shadow mb-4">
-        <div class="card-header py-3">
-            <a href="/administradores/novo" class="btn btn-primary" style="margin-right: 20px;">Novo</a>
-            <h6 class="m-0 font-weight-bold text-primary" style="display: inline-block;">Lista de administradores</h6>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Senha</th>
-                            <th></th>
-                            <th></th>
-
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th>Id</th>
-                            <th>Nome</th>
-                            <th>Email</th>
-                            <th>Senha</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                    <tbody>
-                        <tr th:each="administrador : ${administradores}">
-                            <td th:text="${administrador.id}"></td>
-                            <td th:text="${administrador.nome}"></td>
-                            <td th:text="${administrador.email}"></td>
-                            <td th:text="${administrador.senha}"></td>
-                            <td><a href="#" class="btn btn-warning">Alterar</a></td>
-                            <td><a href="#" class="btn btn-danger">Excluir</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+        <div class="card shadow mb-4" style="padding: 30px">
+            <form method="POST" action="/administradores/criar" onsubmit="return confirm('Confirma ação?')">
+                <div class="form-group">
+                    <label for="Nome">Nome</label>
+                    <input type="text" class="form-control" required id="Nome" name="nome" placeholder="Digite o seu nome">
+                </div>
+                <div class="form-group">
+                    <label for="email">email</label>
+                    <input type="email" class="form-control" required id="email" name="email" placeholder="Digite o seu email">
+                </div>
+                <div class="form-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" class="form-control" required id="senha" name="senha" placeholder="Digite a sua senha">
+                </div>
+                <div class="form-group">
+                    <label for="observacao">Observação</label>
+                    <textarea class="form-control" id="observacao" name="observacao" placeholder="Digite a sua senha"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
         </div>
     </div>
-
-</div>
 <!-- /.container-fluid -->
 <div th:replace="home/compartilhado/baixo"></div>
