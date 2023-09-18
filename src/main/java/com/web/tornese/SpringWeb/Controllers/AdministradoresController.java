@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.swing.text.html.Option;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AdministradoresController {
@@ -35,10 +37,31 @@ public class AdministradoresController {
         return "redirect:/administradores";
     }
 
+    @GetMapping ("/administradores/{id}")
+    public String busca(@PathVariable int id, Model model){
+        Optional<Administrador> admin = repo.findById(id);
+        model.addAttribute("administrador",admin.get());
+        return "home/administradores/editar";
+    }
+
+    @PostMapping("/administradores/{id}/atualizar")
+    public String atualizar(@PathVariable int id, Administrador administrador){
+        // if(!repo.exist(id)){
+        if(!repo.existsById(id)){
+            return "redirect:/administradores";
+        }
+
+        repo.save(administrador);
+
+        return "redirect:/administradores";
+    }
+
     @GetMapping ("/administradores/{id}/excluir")
     public String excluir(@PathVariable int id){
         repo.deleteById(id);
         return "redirect:/administradores";
     }
+
+
 
 }
